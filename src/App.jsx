@@ -1,7 +1,12 @@
+import AuthProvider from "./context/AuthProvider";
+import Router from "./shared/Router";
+
 function App() {
   return (
     <>
-      <div>초기 세팅</div>
+      <AuthProvider>
+        <Router />
+      </AuthProvider>
     </>
   );
 }
