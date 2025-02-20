@@ -3,19 +3,24 @@ import axios from "axios";
 // JWT에 액세스하는 URL
 const API_URL = "https://www.nbcamp-react-auth.link";
 
+// 회원가입에 접근
 export const register = async (userData) => {
   const response = await axios.post(`${API_URL}/register`, userData);
   return response.data;
 };
 
+// 로그인에 접근
 export const login = async (userData) => {
-  // 로그인 정의
+  const response = await axios.post(`${API_URL}/login`, userData);
+  return response.data;
 };
 
 export const getUserProfile = async (userData) => {
-  // 프로필 정의
+  const response = await axios.get(`${API_URL}/profile`, userData);
+  return response.data;
 };
 
 export const updateProfile = async (userData) => {
-  //업데이트 정의
+  const response = await axios.patch(`${API_URL}/profile`, userData);
+  return response.data;
 };
