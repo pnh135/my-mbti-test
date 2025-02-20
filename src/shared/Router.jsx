@@ -22,10 +22,10 @@ const PublicRoute = ({ element: Element, ...rest }) => {
 const SharedRouter = () => {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
+      <Routes>
+        <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<PublicRoute element={<Login />} />} />
+          <Route path="/login" element={<PublicRoute element={Login} />} />
           <Route
             path="/signup"
             element={<PublicRoute element={<Signup />} />}
@@ -34,13 +34,13 @@ const SharedRouter = () => {
             path="/profile"
             element={<ProtectedRoute element={<Profile />} />}
           />
-          <Route path="/test" element={<ProtectedRoute element={<Test />} />} />
+          <Route path="/test" element={<ProtectedRoute element={Test} />} />
           <Route
             path="/results"
             element={<ProtectedRoute element={<TestResult />} />}
           />
-        </Routes>
-      </Layout>
+        </Route>
+      </Routes>
     </BrowserRouter>
   );
 };
