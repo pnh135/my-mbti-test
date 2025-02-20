@@ -18,8 +18,3 @@ const Router = () => {
 };
 
 export default Router;
-<BrowserRouter>
-  <Routes>
-    <Route path="/" />
-  </Routes>
-</BrowserRouter>;

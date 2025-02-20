@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// JWT에 액세스하는 URL
 const API_URL = "https://www.nbcamp-react-auth.link";
 
 export const register = async (userData) => {
