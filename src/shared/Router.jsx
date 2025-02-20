@@ -3,8 +3,11 @@ import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Profile from "../pages/Profile";
+import Test from "../pages/Test";
+import TestResult from "../pages/TestResult";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
+import Layout from "./Layout";
 
 const ProtectedRoute = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useContext(AuthContext);
@@ -13,20 +16,33 @@ const ProtectedRoute = ({ element: Element, ...rest }) => {
 
 const PublicRoute = ({ element: Element, ...rest }) => {
   const { isAuthenticated } = useContext(AuthContext);
-  return !isAuthenticated ? <Element {...rest} /> : <Navigate to="/mypage" />;
+  return !isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
 };
 
-const Router = () => {
+const SharedRouter = () => {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
+      <Layout>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<PublicRoute element={<Login />} />} />
+          <Route
+            path="/signup"
+            element={<PublicRoute element={<Signup />} />}
+          />
+          <Route
+            path="/profile"
+            element={<ProtectedRoute element={<Profile />} />}
+          />
+          <Route path="/test" element={<ProtectedRoute element={<Test />} />} />
+          <Route
+            path="/results"
+            element={<ProtectedRoute element={<TestResult />} />}
+          />
+        </Routes>
+      </Layout>
     </BrowserRouter>
   );
 };
 
-export default Router;
+export default SharedRouter;
