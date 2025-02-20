@@ -1,8 +1,20 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Profile from "../pages/Profile";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthProvider";
+
+const ProtectedRoute = ({ element: Element, ...rest }) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  return isAuthenticated ? <Element {...rest} /> : <Navigate to="/login" />;
+};
+
+const PublicRoute = ({ element: Element, ...rest }) => {
+  const { isAuthenticated } = useContext(AuthContext);
+  return !isAuthenticated ? <Element {...rest} /> : <Navigate to="/mypage" />;
+};
 
 const Router = () => {
   return (
