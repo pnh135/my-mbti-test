@@ -15,17 +15,14 @@ const Header = () => {
   };
 
   return (
-    <header
-      style={{
-        display: "flex",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "0 20px",
-        backgroundColor: "lightgray",
-      }}
-    >
+    <header className="flex min-h-full flex-row justify-between px-6 py-3 lg:px-8 bg-slate-200">
       <h1>
-        <Link to="/">홈</Link>
+        <Link
+          to="/"
+          className="text-center text-1xl font-bold tracking-tight text-gray-900"
+        >
+          홈
+        </Link>
       </h1>
       <nav>
         {isAuthenticated ? (
@@ -34,7 +31,12 @@ const Header = () => {
           </>
         ) : (
           <>
-            <Link to="/login">로그인</Link>
+            <Link
+              to="/login"
+              className="text-center text-1xl font-bold tracking-tight text-gray-900"
+            >
+              로그인
+            </Link>
           </>
         )}
       </nav>

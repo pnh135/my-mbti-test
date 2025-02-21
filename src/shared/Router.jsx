@@ -26,10 +26,7 @@ const SharedRouter = () => {
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<PublicRoute element={Login} />} />
-          <Route
-            path="/signup"
-            element={<PublicRoute element={<Signup />} />}
-          />
+          <Route path="/signup" element={<PublicRoute element={Signup} />} />
           <Route
             path="/profile"
             element={<ProtectedRoute element={<Profile />} />}
