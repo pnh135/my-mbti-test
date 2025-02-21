@@ -25,43 +25,16 @@ const Header = () => {
       }}
     >
       <h1>
-        <Link
-          style={{
-            textDecoration: "none",
-            color: "black",
-            fontSize: "30px",
-            fontWeight: "bold",
-            cursor: "pointer",
-          }}
-          to="/"
-        >
-          home
-        </Link>
+        <Link to="/">홈</Link>
       </h1>
-      <nav
-        style={{
-          display: "flex",
-          gap: "20px",
-        }}
-      >
+      <nav>
         {isAuthenticated ? (
           <>
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={handleLogout}>로그아웃</button>
           </>
         ) : (
           <>
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "black",
-                fontSize: "20px",
-                fontWeight: "bold",
-                cursor: "pointer",
-              }}
-              to="/login"
-            >
-              Login
-            </Link>
+            <Link to="/login">로그인</Link>
           </>
         )}
       </nav>

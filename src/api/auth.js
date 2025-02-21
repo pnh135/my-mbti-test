@@ -10,7 +10,7 @@ export const register = async (userData) => {
 };
 
 // 로그인에 접근
-export const login = async (userData) => {
+export const userLogin = async (userData) => {
   const response = await axios.post(`${API_URL}/login`, userData);
   return response.data;
 };
