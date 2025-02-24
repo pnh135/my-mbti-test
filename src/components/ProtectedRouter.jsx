@@ -1,9 +1,9 @@
-import React from "react";
-import useAuthStore from "../store/authStore";
+import React, { useContext } from "react";
 import { Navigate, Outlet } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
 
 const ProtectedRouter = () => {
-  const { user } = useAuthStore();
+  const { user } = useContext(AuthContext);
 
   return user ? <Outlet /> : <Navigate to="/login" />;
 };
