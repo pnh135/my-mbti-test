@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import TestForm from "../components/TestForm";
 import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
 import { createTestResults } from "../api/testResults";
