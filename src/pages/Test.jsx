@@ -19,7 +19,8 @@ const Test = () => {
     await createTestResults({
       mbtiResult,
       date: new Date().toLocaleString(),
-      isOwer: user.id,
+      isOwer: user?.id,
+      nickname: user?.nickname,
       visibility: true,
     });
   };

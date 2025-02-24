@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 
 // 회원가입인지 로그인인지 구분하기 위해 mode 를 props 로 받습니다.

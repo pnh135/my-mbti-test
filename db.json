@@ -1,9 +1,19 @@
 {
   "testResults": [
     {
-      "id": "b5a3",
-      "mbtiResult": "ESFJ",
-      "date": "2025. 2. 24. 오후 8:32:31",
+      "id": "6b75",
+      "mbtiResult": "ISTJ",
+      "date": "2025. 2. 25. 오전 1:09:32",
+      "isOwer": "user123456",
+      "nickname": "닉네임 44",
+      "visibility": true
+    },
+    {
+      "id": "b17f",
+      "mbtiResult": "INTJ",
+      "date": "2025. 2. 25. 오전 2:08:55",
+      "isOwer": "user123456",
+      "nickname": "닉네임 44",
       "visibility": true
     }
   ]
