@@ -1,17 +1,26 @@
-import { useState } from "react";
 import TestForm from "../components/TestForm";
 import { calculateMBTI, mbtiDescriptions } from "../utils/mbtiCalculator";
 import { createTestResults } from "../api/testResults";
 import { useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { AuthContext } from "../context/AuthProvider";
 
 const Test = () => {
-  const navigate = useNavigate();
   const [result, setResult] = useState(null);
+  const navigate = useNavigate();
+  const { user } = useContext(AuthContext);
 
   const handleTestSubmit = async (answers) => {
     const mbtiResult = calculateMBTI(answers);
-    const newResult = createTestResults(mbtiResult);
-    setResult(newResult);
+
+    setResult(mbtiResult);
+
+    await createTestResults({
+      mbtiResult,
+      timestamp: Date.now(),
+      isOwer: user.id,
+      visibility: true,
+    });
   };
 
   // 테스트 후 결과 페이지로 이동

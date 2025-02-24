@@ -1,4 +1,10 @@
-
 {
-    "testResults": []
-  }
+  "testResults": [
+    {
+      "id": "0f14",
+      "mbtiResult": "INFJ",
+      "timestamp": 1740395716985,
+      "visibility": true
+    }
+  ]
+}
