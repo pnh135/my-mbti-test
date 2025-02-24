@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getUserProfile, updateProfile } from "../api/auth";
+import { AuthContext } from "../context/AuthProvider";
 
 const Profile = () => {
-  const [userInfo, setUserInfo] = useState();
+  const { user, setUser } = useContext(AuthContext);
+  const [nickname, setNickname] = useState("");
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");
     const fetchUserProfile = async () => {
       try {
         const userProfile = await getUserProfile(token);
-        setUserInfo(userProfile);
+        setUser(userProfile);
       } catch (error) {
         console.error(error);
       }
@@ -18,13 +20,18 @@ const Profile = () => {
   }, []);
 
   const handleNicknameChange = (e) => {
-    // setUserInfo(...userInfo,
-    //   nickname: e.target.value)
+    setNickname(e.target.value);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateProfile(userInfo, token);
+    try {
+      const token = localStorage.getItem("accessToken");
+      setUser((prev) => ({ ...prev, nickname: nickname }));
+      await updateProfile({ nickname }, token);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -38,13 +45,13 @@ const Profile = () => {
             아이디
           </label>
           <br />
-          <span>{userInfo?.id}</span>
+          <span className="">{user?.id}</span>
           <br />
           <label className="text-2xl font-bold text-primary-color mb-6">
             닉네임
           </label>
           <br />
-          <span>{userInfo?.nickname}</span>
+          <span>{user?.nickname}</span>
         </div>
         <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
           <h1 className="text-1xl font-bold text-primary-color mb-6">
@@ -58,6 +65,8 @@ const Profile = () => {
               <label>닉네임</label>
               <input
                 onChange={handleNicknameChange}
+                value={nickname}
+                type="text"
                 className="w-full p-4 border border-gray-300 rounded-lg"
               />
             </div>

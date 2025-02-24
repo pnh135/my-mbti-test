@@ -5,7 +5,6 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  console.log(user);
   // 로그인 상태 여부 확인
   const isAuthenticated = !!localStorage.getItem("accessToken");
 
@@ -17,7 +16,6 @@ export const AuthProvider = ({ children }) => {
     // if (response.status !== 200) {
     //   throw new Error("로그인에 실패하였습니다.");
     // }
-
     setUser(response);
   };
 
@@ -29,7 +27,7 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ handleLogin, logout, user, isAuthenticated }}
+      value={{ handleLogin, logout, user, setUser, isAuthenticated }}
     >
       {children}
     </AuthContext.Provider>
