@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
@@ -20,7 +20,12 @@ const Login = () => {
     }
   };
 
-  return <AuthForm mode="login" onSubmit={handleSubmit} />;
+  return (
+    <>
+      <AuthForm mode="login" onSubmit={handleSubmit} />
+      <Link to="/signup">회원가입하기</Link>
+    </>
+  );
 };
 
 export default Login;
