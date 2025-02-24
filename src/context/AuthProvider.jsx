@@ -5,8 +5,10 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  // 로그인 상태 여부 확인
   const isAuthenticated = !!localStorage.getItem("accessToken");
 
+  // accessToken을 localStorage에 저장하여 로그인 상태 유지
   const handleLogin = async (userData) => {
     const response = await login(userData);
     const token = response.accessToken;
@@ -17,6 +19,8 @@ export const AuthProvider = ({ children }) => {
 
     setUser(response);
   };
+
+  // localStorage에 저장된 accessToken을 제거하고 user를 초기값으로 되돌림
   const logout = async () => {
     localStorage.removeItem("accessToken");
     setUser(null);

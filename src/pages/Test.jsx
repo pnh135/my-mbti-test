@@ -12,9 +12,9 @@ const Test = () => {
     const mbtiResult = calculateMBTI(answers);
     const newResult = createTestResults(mbtiResult);
     setResult(newResult);
-    /* Test 결과는 mbtiResult 라는 변수에 저장이 됩니다. 이 데이터를 어떻게 API 를 이용해 처리 할 지 고민해주세요. */
   };
 
+  // 테스트 후 결과 페이지로 이동
   const handleNavigateToResults = () => {
     navigate("/results");
   };
