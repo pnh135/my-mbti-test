@@ -1,65 +1,68 @@
-import React, { useState, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { AuthContext } from "../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
+import AuthForm from "../components/AuthForm";
+import { login } from "../api/auth";
+import useAuthStore from "../store/authStore";
 
 const Login = () => {
-  const [id, setId] = useState("");
-  const [password, setPassword] = useState("");
-  const { login } = useContext(AuthContext);
+  const { setUser } = useAuthStore();
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleLogin = async (formData) => {
     try {
-      const response = await axios.post(
-        "https://www.nbcamp-react-auth.link/login",
-        {
-          id,
-          password,
-        }
-      );
-      const data = response.data;
-      if (data.success) {
-        login(data.accessToken);
-        navigate("/");
-      } else {
-        alert("로그인 실패");
-      }
+      const response = await login(formData);
+
+      const userDataToStore = {
+        id: response.userId,
+        nickname: response.nickname,
+        accessToken: response.accessToken,
+      };
+
+      setUser(userDataToStore);
+      alert("로그인 성공!");
+      navigate("/");
     } catch (error) {
       console.error("Login error:", error);
-      alert("로그인 실패");
     }
   };
 
-  return (
-    <div className="min-w-fit justify-center text-center bg-pink-100">
-      <h2>로그인</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={id}
-          onChange={(e) => setId(e.target.value)}
-          placeholder="ID 입력"
-          className="rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password 입력"
-          className="rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-        />
-        <button type="submit">로그인</button>
-        <Link
-          to="/signup"
-          className="text-center text-1xl font-bold tracking-tight text-gray-900"
-        >
-          <div>회원가입하기</div>
-        </Link>
-      </form>
-    </div>
-  );
+  return <AuthForm mode="login" onSubmit={handleLogin} />;
 };
 
 export default Login;
+
+// import { useNavigate } from "react-router-dom";
+// import AuthForm from "../components/AuthForm";
+// import { login } from "../api/auth";
+// import useAuthStore from "../store/authStore";
+
+// const Login = () => {
+//   const navigate = useNavigate();
+//   const { setUser } = useAuthStore();
+
+//   // 통신
+//   const handleLogin = async (userData) => {
+//     try {
+//       const response = await login(userData);
+
+//       // user 객체를 직접 생성하여 setUser에 전달
+//       const userDataToStore = {
+//         id: response.userId,
+//         nickname: response.nickname,
+//         avatar: response.avatar, // 나중에 프로필 이미지 만들자
+//         accessToken: response.accessToken,
+//       };
+
+//       setUser(userDataToStore);
+
+//       alert("로그인 성공!");
+//       navigate("/");
+//     } catch (error) {
+//       console.error(error);
+//       alert("로그인 실패: " + error.message || "알 수 없는 오류");
+//     }
+//   };
+
+//   return <AuthForm mode="login" onSubmit={handleLogin} />;
+// };
+
+// export default Login;

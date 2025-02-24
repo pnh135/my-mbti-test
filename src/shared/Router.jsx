@@ -1,23 +1,12 @@
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../pages/Home";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Profile from "../pages/Profile";
 import Test from "../pages/Test";
 import TestResult from "../pages/TestResult";
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthProvider";
 import Layout from "./Layout";
-
-const ProtectedRoute = ({ element: Element, ...rest }) => {
-  const { isAuthenticated } = useContext(AuthContext);
-  return isAuthenticated ? <Element {...rest} /> : <Navigate to="/login" />;
-};
-
-const PublicRoute = ({ element: Element, ...rest }) => {
-  const { isAuthenticated } = useContext(AuthContext);
-  return !isAuthenticated ? <Element {...rest} /> : <Navigate to="/" />;
-};
+import ProtectedRouter from "../components/ProtectedRouter";
 
 const SharedRouter = () => {
   return (
@@ -25,17 +14,14 @@ const SharedRouter = () => {
       <Routes>
         <Route element={<Layout />}>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<PublicRoute element={Login} />} />
-          <Route path="/signup" element={<PublicRoute element={Signup} />} />
-          <Route
-            path="/profile"
-            element={<ProtectedRoute element={<Profile />} />}
-          />
-          <Route path="/test" element={<ProtectedRoute element={Test} />} />
-          <Route
-            path="/results"
-            element={<ProtectedRoute element={<TestResult />} />}
-          />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+
+          <Route element={<ProtectedRouter />}>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/test" element={<Test />} />
+            <Route path="/results" element={<TestResult />} />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
