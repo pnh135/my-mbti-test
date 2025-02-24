@@ -18,7 +18,11 @@ const Signup = () => {
     }
   };
 
-  return <AuthForm mode="signup" onSubmit={handleSignup} />;
+  return (
+    <div className="w-full flex flex-col items-center justify-center bg-gray-100">
+      <AuthForm mode="signup" onSubmit={handleSignup} />
+    </div>
+  );
 };
 
 export default Signup;

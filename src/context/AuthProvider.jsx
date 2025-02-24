@@ -5,6 +5,7 @@ export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  console.log(user);
   // 로그인 상태 여부 확인
   const isAuthenticated = !!localStorage.getItem("accessToken");
 

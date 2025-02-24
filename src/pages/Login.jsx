@@ -19,9 +19,9 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="w-full flex flex-col items-center justify-center bg-gray-100">
       <AuthForm mode="login" onSubmit={handleSubmit} />
-    </>
+    </div>
   );
 };
 

@@ -10,6 +10,7 @@ const Test = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
+  // 테스트 결과를 json db에 저장
   const handleTestSubmit = async (answers) => {
     const mbtiResult = calculateMBTI(answers);
 
@@ -17,7 +18,7 @@ const Test = () => {
 
     await createTestResults({
       mbtiResult,
-      timestamp: Date.now(),
+      date: new Date().toLocaleString(),
       isOwer: user.id,
       visibility: true,
     });
@@ -40,7 +41,7 @@ const Test = () => {
           </>
         ) : (
           <>
-            <h1 className="text-3xl font-bold text-primary-color mb-6">
+            <h1 className="text-3xl font-bold text-red-500 mb-6">
               테스트 결과: {result}
             </h1>
             <p className="text-lg text-gray-700 mb-6">
@@ -49,7 +50,7 @@ const Test = () => {
             </p>
             <button
               onClick={handleNavigateToResults}
-              className="w-full bg-primary-color text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
+              className="w-full bg-red-500 text-white py-3 rounded-lg font-semibold hover:bg-primary-dark transition duration-300 hover:text-[#FF5A5F]"
             >
               결과 페이지로 이동하기
             </button>

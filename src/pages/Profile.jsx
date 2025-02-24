@@ -1,38 +1,74 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { getUserProfile, updateProfile } from "../api/auth";
 
-const Profile = ({ user, setUser }) => {
-  const [nickname, setNickname] = useState(user?.nickname || "");
+const Profile = () => {
+  const [userInfo, setUserInfo] = useState();
 
-  getUserProfile();
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    const fetchUserProfile = async () => {
+      try {
+        const userProfile = await getUserProfile(token);
+        setUserInfo(userProfile);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchUserProfile();
+  }, []);
 
   const handleNicknameChange = (e) => {
-    setNickname(e.target.value);
+    // setUserInfo(...userInfo,
+    //   nickname: e.target.value)
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    updateProfile(e);
+    updateProfile(userInfo, token);
   };
 
   return (
-    <div>
-      <div>
-        <h1>프로필 정보</h1>
-        <label>아이디</label>
-        <span>(아이디 들어갈 곳)</span>
-        <label>닉네임</label>
-        <span>(닉네임 들어갈 곳)</span>
-      </div>
-      <div>
-        <h1>프로필 수정</h1>
-        <form onSubmit={handleSubmit}>
-          <div>
-            <label>닉네임</label>
-            <input onChange={handleNicknameChange} />
-          </div>
-          <button type="submit">프로필 업데이트</button>
-        </form>
+    <div className="w-full flex flex-col items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full text-center">
+        <div>
+          <h1 className="text-3xl font-bold text-primary-color mb-6">
+            프로필 정보
+          </h1>
+          <label className="text-2xl font-bold text-primary-color mb-6">
+            아이디
+          </label>
+          <br />
+          <span>{userInfo?.id}</span>
+          <br />
+          <label className="text-2xl font-bold text-primary-color mb-6">
+            닉네임
+          </label>
+          <br />
+          <span>{userInfo?.nickname}</span>
+        </div>
+        <div className="bg-white shadow-lg rounded-lg p-8 max-w-md w-full">
+          <h1 className="text-1xl font-bold text-primary-color mb-6">
+            프로필 수정
+          </h1>
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6 bg-gray-50 p-6 rounded-lg shadow-md"
+          >
+            <div>
+              <label>닉네임</label>
+              <input
+                onChange={handleNicknameChange}
+                className="w-full p-4 border border-gray-300 rounded-lg"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-secondary-color transition duration-300 hover:text-[#FF5A5F]"
+            >
+              프로필 업데이트
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
