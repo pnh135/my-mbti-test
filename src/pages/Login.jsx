@@ -18,6 +18,7 @@ const Login = () => {
         accessToken: response.accessToken,
       };
 
+      console.log(userData);
       setUser(userData);
       alert("로그인 성공!");
       navigate("/");
