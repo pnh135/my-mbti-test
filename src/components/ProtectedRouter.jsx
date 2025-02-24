@@ -3,9 +3,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 
 const ProtectedRouter = () => {
-  const { user } = useContext(AuthContext);
+  const { isAuthenticated } = useContext(AuthContext);
 
-  return user ? <Outlet /> : <Navigate to="/login" />;
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default ProtectedRouter;

@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthProvider";
 
 const Header = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -25,7 +25,7 @@ const Header = () => {
         </Link>
       </h1>
       <nav>
-        {user ? (
+        {isAuthenticated ? (
           <>
             <button onClick={handleLogout}>로그아웃</button>
           </>

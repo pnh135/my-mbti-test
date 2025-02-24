@@ -1,62 +1,32 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
+import { login } from "../api/auth";
 
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const isAuthenticated = !!localStorage.getItem("accessToken");
 
-  useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    const storedUser = localStorage.getItem("user");
-    if (token && storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+  const handleLogin = async (userData) => {
+    const response = await login(userData);
+    const token = response.accessToken;
+    localStorage.setItem("accessToken", token);
+    // if (response.status !== 200) {
+    //   throw new Error("로그인에 실패하였습니다.");
+    // }
 
-  const login = (userData) => {
-    localStorage.setItem("accessToken", userData.accessToken);
-    localStorage.setItem("user", JSON.stringify(userData));
-    setUser(userData);
+    setUser(response);
   };
-
-  const logout = () => {
+  const logout = async () => {
     localStorage.removeItem("accessToken");
-    localStorage.removeItem("user");
     setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ setUser, user, login, logout }}>
+    <AuthContext.Provider
+      value={{ handleLogin, logout, user, isAuthenticated }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-
-// export const AuthContext = createContext();
-
-// export const AuthProvider = ({ children }) => {
-//   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-//   useEffect(() => {
-//     const token = localStorage.getItem("accessToken");
-//     if (token) {
-//       setIsAuthenticated(true);
-//     }
-//   }, []);
-
-//   const login = (token) => {
-//     localStorage.setItem("accessToken", token);
-//     setIsAuthenticated(true);
-//   };
-
-//   const logout = () => {
-//     localStorage.removeItem("accessToken");
-//     setIsAuthenticated(false);
-//   };
-
-//   return (
-//     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
-//       {children}
-//     </AuthContext.Provider>
-//   );
-// };

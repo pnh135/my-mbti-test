@@ -1,33 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
-import { login } from "../api/auth";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { setUser } = useContext(AuthContext);
+  const { user, handleLogin } = useContext(AuthContext);
 
-  const handleLogin = async (formData) => {
+  console.log(user);
+
+  const handleSubmit = async (formData) => {
     try {
-      const response = await login(formData);
-
-      const userData = {
-        id: response.userId,
-        nickname: response.nickname,
-        accessToken: response.accessToken,
-      };
-
-      console.log(userData);
-      setUser(userData);
+      handleLogin(formData);
       alert("로그인 성공!");
       navigate("/");
     } catch (error) {
       console.error("Login error:", error);
+      alert(error);
     }
   };
 
-  return <AuthForm mode="login" onSubmit={handleLogin} />;
+  return <AuthForm mode="login" onSubmit={handleSubmit} />;
 };
 
 export default Login;
