@@ -1,13 +1,11 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AuthForm from "../components/AuthForm";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthProvider";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { user, handleLogin } = useContext(AuthContext);
-
-  console.log(user);
+  const { handleLogin } = useContext(AuthContext);
 
   const handleSubmit = async (formData) => {
     try {
@@ -23,7 +21,6 @@ const Login = () => {
   return (
     <>
       <AuthForm mode="login" onSubmit={handleSubmit} />
-      <Link to="/signup">회원가입하기</Link>
     </>
   );
 };

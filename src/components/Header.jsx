@@ -19,7 +19,7 @@ const Header = () => {
       <h1>
         <Link
           to="/"
-          className="text-center text-1xl font-bold tracking-tight text-gray-900"
+          className="text-center text-1xl font-bold tracking-tight text-red-500"
         >
           홈
         </Link>
@@ -27,13 +27,21 @@ const Header = () => {
       <nav>
         {isAuthenticated ? (
           <>
-            <button onClick={handleLogout}>로그아웃</button>
+            <Link to="/profile">프로필</Link>
+            <Link to="/test">테스트</Link>
+            <Link to="/results">결과 보기</Link>
+            <button
+              className="inline-block bg-red-500 text-white py-2 px-6 rounded-full hover:bg-secondary-color transition mb-4 hover:text-[#FF5A5F]"
+              onClick={handleLogout}
+            >
+              로그아웃
+            </button>
           </>
         ) : (
           <>
             <Link
               to="/login"
-              className="text-center text-1xl font-bold tracking-tight text-gray-900"
+              className="text-center text-1xl font-bold tracking-tight text-red-500"
             >
               로그인
             </Link>

@@ -1,7 +1,11 @@
 const TestResultItem = () => {
   return (
     <>
-      <div>결과아이템 렌더링</div>
+      <div>
+        <div>{user.id}</div>
+        <div>{TestResultList}</div>
+        <div>{}</div>
+      </div>
     </>
   );
 };

@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { updateProfile } from "../api/auth";
+import { getUserProfile, updateProfile } from "../api/auth";
 
 const Profile = ({ user, setUser }) => {
   const [nickname, setNickname] = useState(user?.nickname || "");
+
+  getUserProfile();
 
   const handleNicknameChange = (e) => {
     setNickname(e.target.value);
@@ -10,10 +12,18 @@ const Profile = ({ user, setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    updateProfile(e);
   };
 
   return (
     <div>
+      <div>
+        <h1>프로필 정보</h1>
+        <label>아이디</label>
+        <span>(아이디 들어갈 곳)</span>
+        <label>닉네임</label>
+        <span>(닉네임 들어갈 곳)</span>
+      </div>
       <div>
         <h1>프로필 수정</h1>
         <form onSubmit={handleSubmit}>
