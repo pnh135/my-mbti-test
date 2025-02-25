@@ -27,15 +27,24 @@ const Header = () => {
       <nav>
         {isAuthenticated ? (
           <>
-            <Link to="/profile">프로필</Link>
-            <Link to="/test">테스트</Link>
-            <Link to="/results">결과 보기</Link>
-            <button
-              className="inline-block bg-red-500 text-white py-2 px-6 rounded-full hover:bg-red-400 transition mb-4 hover:text-white"
-              onClick={handleLogout}
-            >
-              로그아웃
-            </button>
+            <div className="space-x-4">
+              {" "}
+              <Link to="/profile" className="text-red-500 font-semibold">
+                프로필
+              </Link>
+              <Link to="/test" className="text-red-500 font-semibold">
+                테스트
+              </Link>
+              <Link to="/results" className="text-red-500 font-semibold">
+                결과 보기
+              </Link>
+              <button
+                className="inline-block bg-red-500 text-white py-2 px-6 rounded-full hover:bg-red-400 transition mb-4 hover:text-white"
+                onClick={handleLogout}
+              >
+                로그아웃
+              </button>
+            </div>
           </>
         ) : (
           <>
