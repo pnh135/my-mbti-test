@@ -15,6 +15,14 @@
       "isOwer": "user123456",
       "nickname": "닉네임 44",
       "visibility": true
+    },
+    {
+      "id": "b87e",
+      "mbtiResult": "ESTJ",
+      "date": "2025. 2. 25. 오전 9:31:32",
+      "isOwer": "user123456",
+      "nickname": "닉네임뭐해",
+      "visibility": true
     }
   ]
 }

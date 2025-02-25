@@ -11,26 +11,28 @@ const TestResultItem = ({ item }) => {
 
   return (
     <>
-      <div className="bg-black rounded-lg shadow-md p-6 hover:shadow-lg transition-shadow relative">
-        <div className="text-yellow-400 font-bold">{item.nickname}</div>
-        <div className="text-white">{item.date}</div>
-        <div className="text-white"> {item.mbtiResult}</div>
+      <div className="bg-blue-950 rounded-lg shadow-md p-9 hover:shadow-lg transition-shadow relative">
+        <div className="text-yellow-400 font-bold text-2xl">
+          {item.nickname}
+        </div>
+        <div className="text-slate-500 text-right">{item.date}</div>
+        <div className="text-white font-bold text-2xl"> {item.mbtiResult}</div>
         <div className="text-white">
           {mbtiDescriptions[item.mbtiResult] ||
             "해당 성격 유형에 대한 설명이 없습니다."}
         </div>
 
         {item.isOwer === user?.id ? (
-          <div>
+          <div className="space-x-5">
             <button
-              className="bg-blue-400"
+              className="bg-blue-400  text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
               onClick={() => updataTestResultVisibility()}
             >
               비공개로 전환
             </button>
             <button
-              className="bg-red-300"
-              onClick={(id) => deleteTestResult(id)}
+              className="bg-red-300  text-white py-2 rounded-lg hover:bg-red-400 transition duration-300 w-10"
+              onClick={(isOwer) => deleteTestResult(isOwer)}
             >
               삭제
             </button>
