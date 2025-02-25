@@ -12,10 +12,10 @@ const TestResultItem = ({ item, setTestResults, testResults }) => {
 
   const itemDelete = (item) => {
     deleteTestResult(item.id);
-    const filtered = testResults.filter((item) => item.id !== testResults.id);
-    setTestResults([filtered]);
+    const filtered = testResults.filter((result) => result.id !== item.id);
+    setTestResults(filtered);
   };
-
+  console.log(item.isOwer);
   return (
     <>
       <div className="bg-blue-950 rounded-lg shadow-md p-9 hover:shadow-lg transition-shadow relative">
