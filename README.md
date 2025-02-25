@@ -1,11 +1,11 @@
 # 프로젝트 소개
 <br/>
 
-  ![메인 이미지](https://i.imgur.com/E1qlFOr.jpeg)
+  ![메인 이미지](https://i.imgur.com/tPAdVWJ.png)
 
   **▼▼ vercel 배포 링크 ▼▼**
 
-  [배포 페이지](https://my-pokemon-3kz8r2b7c-park-nahyuns-projects.vercel.app)
+  [배포 페이지](https://my-mbti-test-two.vercel.app/)
 
   <br/>
 
@@ -41,6 +41,7 @@
 
 - tanstack query의 사용 부재로 **삭제 또는 비공개로 전환** 시 바로 반영되지 않는다..
 - **user의 유지**가 불안정해 본인의 테스트 결과여도 **삭제 또는 비공개 버튼**이 뜨지 않을 경우가 있다.
+- **json-server의 배포 문제**로 **테스트 결과 페이지**가 제대로 렌더링되지 않는다.
 
 <br/>
 
