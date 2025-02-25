@@ -39,7 +39,7 @@ const AuthForm = ({ mode, onSubmit }) => {
           className="w-full p-4 border border-gray-300 rounded-lg"
         />
         <input
-          type="text"
+          type="password"
           name="password"
           value={formData.password}
           onChange={handleChange}

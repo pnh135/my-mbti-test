@@ -26,13 +26,15 @@ const TestResultItem = ({ item }) => {
           <div className="space-x-5">
             <button
               className="bg-blue-400  text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-              onClick={() => updataTestResultVisibility()}
+              onClick={(item) =>
+                updataTestResultVisibility(item.id, item.visibilty)
+              }
             >
               비공개로 전환
             </button>
             <button
               className="bg-red-300  text-white py-2 rounded-lg hover:bg-red-400 transition duration-300 w-10"
-              onClick={(isOwer) => deleteTestResult(isOwer)}
+              onClick={(item) => deleteTestResult(item.id)}
             >
               삭제
             </button>

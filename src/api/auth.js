@@ -33,20 +33,3 @@ export const updateProfile = async (userData, token) => {
   });
   return response.data;
 };
-
-// export const updateProfile = async (formData) => {
-//   try {
-//     const token = localStorage.getItem("accessToken");
-//     if (!token) throw new Error("로그인이 필요합니다.");
-//     const response = await axios.patch(`${API_URL}/profile`, formData, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//         "Content-Type": "application/json",
-//       },
-//     });
-//     return response.data;
-//   } catch (error) {
-//     console.error("프로필 업데이트 실패:", error);
-//     throw error;
-//   }
-// };
