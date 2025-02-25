@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { AuthContext } from "../context/AuthProvider";
 import {
   deleteTestResult,
   updataTestResultVisibility,
@@ -7,8 +5,6 @@ import {
 import { mbtiDescriptions } from "../utils/mbtiCalculator";
 
 const TestResultItem = ({ item }) => {
-  const { user } = useContext(AuthContext);
-
   return (
     <>
       <div className="bg-blue-950 rounded-lg shadow-md p-9 hover:shadow-lg transition-shadow relative">
@@ -22,11 +18,11 @@ const TestResultItem = ({ item }) => {
             "해당 성격 유형에 대한 설명이 없습니다."}
         </div>
 
-        {item.isOwer === user?.id ? (
+        {item.isOwer === localStorage.getItem("userId") ? (
           <div className="space-x-5">
             <button
               className="bg-blue-400  text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
-              onClick={(item) =>
+              onClick={() =>
                 updataTestResultVisibility(item.id, item.visibilty)
               }
             >
@@ -34,7 +30,7 @@ const TestResultItem = ({ item }) => {
             </button>
             <button
               className="bg-red-300  text-white py-2 rounded-lg hover:bg-red-400 transition duration-300 w-10"
-              onClick={(item) => deleteTestResult(item.id)}
+              onClick={() => deleteTestResult(item.id)}
             >
               삭제
             </button>

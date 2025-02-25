@@ -1,35 +1,35 @@
 {
   "testResults": [
     {
-      "id": "6b75",
-      "mbtiResult": "ISTJ",
-      "date": "2025. 2. 25. 오전 1:09:32",
-      "isOwer": "user123456",
-      "nickname": "닉네임 44",
-      "visibility": true
-    },
-    {
-      "id": "b17f",
-      "mbtiResult": "INTJ",
-      "date": "2025. 2. 25. 오전 2:08:55",
-      "isOwer": "user123456",
-      "nickname": "닉네임 44",
-      "visibility": true
-    },
-    {
-      "id": "b87e",
-      "mbtiResult": "ESTJ",
-      "date": "2025. 2. 25. 오전 9:31:32",
-      "isOwer": "user123456",
-      "nickname": "닉네임뭐해",
-      "visibility": true
-    },
-    {
       "id": "7d41",
       "mbtiResult": "ESTP",
       "date": "2025. 2. 25. 오전 10:39:03",
       "isOwer": "user5432",
       "nickname": "닉네임뭐하지",
+      "visibility": true
+    },
+    {
+      "id": "a40b",
+      "mbtiResult": "ENTJ",
+      "date": "2025. 2. 25. 오후 12:06:10",
+      "isOwer": "user12345",
+      "nickname": "닉네임뭐해",
+      "visibility": true
+    },
+    {
+      "id": "8f1c",
+      "mbtiResult": "INFJ",
+      "date": "2025. 2. 25. 오후 12:07:13",
+      "isOwer": "user123456",
+      "nickname": "닉네임뭐해",
+      "visibility": true
+    },
+    {
+      "id": "fab5",
+      "mbtiResult": "ENTJ",
+      "date": "2025. 2. 25. 오후 12:24:21",
+      "isOwer": "user123456",
+      "nickname": "닉네임뭐해",
       "visibility": true
     }
   ]

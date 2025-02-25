@@ -23,7 +23,14 @@ const TestResult = () => {
         테스트 결과 페이지
       </h1>
       {testResults.map((item) => {
-        return <TestResultItem key={item.id} item={item} />;
+        return (
+          <TestResultItem
+            key={item.id}
+            item={item}
+            setTestResults={setTestResults}
+            testResults={testResults}
+          />
+        );
       })}
     </div>
   );
