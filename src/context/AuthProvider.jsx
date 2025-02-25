@@ -13,7 +13,6 @@ export const AuthProvider = ({ children }) => {
     const response = await login(userData);
     localStorage.setItem("accessToken", response.accessToken);
     localStorage.setItem("userId", response.userId);
-    localStorage.setItem("nickname", response.nickname);
     // if (response.status !== 200) {
     //   throw new Error("로그인에 실패하였습니다.");
     // }
@@ -24,7 +23,6 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userId");
-    localStorage.removeItem("nickname");
     setUser(null);
   };
 
