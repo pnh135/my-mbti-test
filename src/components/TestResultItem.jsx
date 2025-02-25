@@ -21,7 +21,7 @@ const TestResultItem = ({ item }) => {
         {item.isOwer === localStorage.getItem("userId") ? (
           <div className="space-x-5">
             <button
-              className="bg-blue-400  text-white py-2 rounded-lg hover:bg-blue-600 transition duration-300"
+              className="inline-block bg-blue-500  text-white py-2 px-5 rounded-lg hover:bg-blue-600 transition duration-300"
               onClick={() =>
                 updataTestResultVisibility(item.id, item.visibilty)
               }
@@ -29,7 +29,7 @@ const TestResultItem = ({ item }) => {
               비공개로 전환
             </button>
             <button
-              className="bg-red-300  text-white py-2 rounded-lg hover:bg-red-400 transition duration-300 w-10"
+              className="inline-block bg-red-400  text-white py-2 px-5 rounded-lg hover:bg-red-500 transition duration-300"
               onClick={() => deleteTestResult(item.id)}
             >
               삭제
