@@ -11,9 +11,9 @@ export const AuthProvider = ({ children }) => {
   // accessToken을 localStorage에 저장하여 로그인 상태 유지
   const handleLogin = async (userData) => {
     const response = await login(userData);
-    const token = response.accessToken;
-    localStorage.setItem("accessToken", token);
+    localStorage.setItem("accessToken", response.accessToken);
     localStorage.setItem("userId", response.userId);
+    localStorage.setItem("nickname", response.nickname);
     // if (response.status !== 200) {
     //   throw new Error("로그인에 실패하였습니다.");
     // }
@@ -24,6 +24,7 @@ export const AuthProvider = ({ children }) => {
   const logout = async () => {
     localStorage.removeItem("accessToken");
     localStorage.removeItem("userId");
+    localStorage.removeItem("nickname");
     setUser(null);
   };
 

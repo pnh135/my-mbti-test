@@ -4,7 +4,18 @@ import {
 } from "../api/testResults";
 import { mbtiDescriptions } from "../utils/mbtiCalculator";
 
-const TestResultItem = ({ item }) => {
+const TestResultItem = ({ item, setTestResults, testResults }) => {
+  const itemUpdate = (item) => {
+    const updated = updataTestResultVisibility(item.id, item.visibilty);
+    setTestResults([...testResults, updated]);
+  };
+
+  const itemDelete = (item) => {
+    deleteTestResult(item.id);
+    const filtered = testResults.filter((item) => item.id !== testResults.id);
+    setTestResults([filtered]);
+  };
+
   return (
     <>
       <div className="bg-blue-950 rounded-lg shadow-md p-9 hover:shadow-lg transition-shadow relative">
@@ -17,20 +28,19 @@ const TestResultItem = ({ item }) => {
           {mbtiDescriptions[item.mbtiResult] ||
             "해당 성격 유형에 대한 설명이 없습니다."}
         </div>
+        <br />
 
         {item.isOwer === localStorage.getItem("userId") ? (
-          <div className="space-x-5">
+          <div className="space-x-5 text-right">
             <button
               className="inline-block bg-blue-500  text-white py-2 px-5 rounded-lg hover:bg-blue-600 transition duration-300"
-              onClick={() =>
-                updataTestResultVisibility(item.id, item.visibilty)
-              }
+              onClick={() => itemUpdate(item)}
             >
               비공개로 전환
             </button>
             <button
-              className="inline-block bg-red-400  text-white py-2 px-5 rounded-lg hover:bg-red-500 transition duration-300"
-              onClick={() => deleteTestResult(item.id)}
+              className="inline-block bg-red-400  text-white py-2 px-5 rounded-lg hover:bg-red-00 transition duration-300"
+              onClick={() => itemDelete(item)}
             >
               삭제
             </button>
