@@ -1,8 +1,6 @@
 import axios from "axios";
 
-const JS_URL = import.meta.env.PROD
-  ? "https://animated-pebble-comic.glitch.me"
-  : "http://localhost:3000/testResults";
+const JS_URL = "https://animated-pebble-comic.glitch.me";
 
 export const getTestResults = async () => {
   const response = await axios.get(JS_URL);
